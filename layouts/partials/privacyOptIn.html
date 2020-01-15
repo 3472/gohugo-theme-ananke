@@ -1,0 +1,47 @@
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+    const KEY_COOKIE_OPT_IN = "cookieOptIn";
+    window.cookieconsent.initialise({
+        "palette": {
+            "popup": {
+                "background": "#000"
+            },
+            "button": {
+                "background": "#f1d600"
+            }
+        },
+        "theme": "classic",
+        "position": "top",
+        "type": "opt-in",
+        onInitialise: function (status) {
+            var type = this.options.type;
+            var didConsent = this.hasConsented();
+            if (type == 'opt-in' && didConsent) {
+                console.log("enable cookies");
+                localStorage.setItem(KEY_COOKIE_OPT_IN, true);
+            }
+            if (type == 'opt-out' && !didConsent) {
+                localStorage.removeItem(KEY_COOKIE_OPT_IN);
+            }
+        },
+        onStatusChange: function (status, chosenBefore) {
+            var type = this.options.type;
+            var didConsent = this.hasConsented();
+            if (type == 'opt-in' && didConsent) {
+                localStorage.setItem(KEY_COOKIE_OPT_IN, true);
+            }
+            if (type == 'opt-out' && !didConsent) {
+                localStorage.removeItem(KEY_COOKIE_OPT_IN);
+            }
+        },
+        onRevokeChoice: function () {
+            var type = this.options.type;
+            if (type == 'opt-in') {
+                localStorage.removeItem(KEY_COOKIE_OPT_IN);
+            }
+            if (type == 'opt-out') {
+                localStorage.setItem(KEY_COOKIE_OPT_IN, true);
+            }
+        }
+    });
+</script>
