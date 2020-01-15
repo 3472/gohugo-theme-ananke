@@ -40,9 +40,11 @@
   {{- template "_internal/schema.html" . -}}
   {{- template "_internal/twitter_cards.html" . -}}
 
-  {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
-  {{ template "_internal/google_analytics_async.html" . }}
+  <!-- {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
+   {{ template "_internal/google_analytics_async.html" . }}
+  {{ partial "google/analytics.html" . }}
   {{ end }}
+  -->
 
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
@@ -59,7 +61,7 @@
   {{ block "scripts" . }}{{ partialCached "site-scripts.html" . }}{{ end }}
   
   {{ partial "privacyOptIn.html" . }}
-  
+    
 </body>
 
 </html>
