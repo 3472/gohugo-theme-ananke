@@ -1,8 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
 <script>
-    //TODO need to add or remove the scripts / cookies after the state of consent changes
-    //reload page or what else?
-    const KEY_COOKIE_OPT_IN = "cookieOptIn"; //blah
+    const KEY_COOKIE_OPT_IN = "cookieOptIn";
     window.cookieconsent.initialise({
         "palette": {
             "popup": {
@@ -16,34 +14,30 @@
         "position": "bottom-right",
         "type": "opt-in",
         onInitialise: function (status) {
-            var type = this.options.type;
             var didConsent = this.hasConsented();
-            if (type == 'opt-in' && didConsent) {
+            if (didConsent) {
                 console.log("enable cookies");
                 localStorage.setItem(KEY_COOKIE_OPT_IN, true);
             }
-            if (type == 'opt-out' && !didConsent) {
+            else {
                 localStorage.removeItem(KEY_COOKIE_OPT_IN);
             }
         },
         onStatusChange: function (status, chosenBefore) {
-            var type = this.options.type;
             var didConsent = this.hasConsented();
-            if (type == 'opt-in' && didConsent) {
+            if (didConsent) {
                 localStorage.setItem(KEY_COOKIE_OPT_IN, true);
             }
-            if (type == 'opt-out' && !didConsent) {
+            else {
                 localStorage.removeItem(KEY_COOKIE_OPT_IN);
             }
+            //reload page for updated cookies
+            location.reload();
+
         },
         onRevokeChoice: function () {
-            var type = this.options.type;
-            if (type == 'opt-in') {
-                localStorage.removeItem(KEY_COOKIE_OPT_IN);
-            }
-            if (type == 'opt-out') {
-                localStorage.setItem(KEY_COOKIE_OPT_IN, true);
-            }
+            localStorage.removeItem(KEY_COOKIE_OPT_IN);
         }
     });
+
 </script>
