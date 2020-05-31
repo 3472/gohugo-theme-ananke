@@ -9,12 +9,12 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
   {{ hugo.Generator }}
   {{/* NOTE: For Production make sure you add `HUGO_ENV="production"` before your build command */}}
-  {{ if eq hugo.Environment "production" }}
-
+  <!-- commented out the distinction for now because it does not get applied correctly -->
+  <!-- {{ if eq hugo.Environment "production" }} -->
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
-  {{ else }}
+  <!-- {{ else }}
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-  {{ end }}
+  {{ end }} -->
 
   {{ $stylesheet := .Site.Data.webpack_assets.app }}
   {{ with $stylesheet.css }}
