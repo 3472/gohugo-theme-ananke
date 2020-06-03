@@ -1,0 +1,10 @@
+<form>
+    <label>
+        Search: 
+        <input type="test"/>
+    </label>
+
+</form>
+{{ $script := resources.Get "js/search.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $script.RelPermalink }}"></script>
+
