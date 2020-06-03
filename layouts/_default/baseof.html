@@ -50,8 +50,6 @@
 
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-  <script src="https://unpkg.com/lunr/lunr.js"></script>
-
 </head>
 
 <body
@@ -59,7 +57,6 @@
 
   {{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
   <main class="pb7" role="main">
-    {{ partial "search" }}
     {{ block "main" . }}{{ end }}
   </main>
   {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}

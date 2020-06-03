@@ -1,0 +1,15 @@
+
+{{ define "main" }}
+<form>
+    <label>
+        Search:
+        <input type="test" id="search-input" />
+    </label>
+</form>
+<button id="search-button">Send</button>
+<ol id="search-results">
+</ol>
+{{ $script := resources.Get "js/search.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $script.RelPermalink }}"></script>
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+{{ end }}

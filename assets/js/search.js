@@ -1,14 +1,11 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("in search js");
     let searchResults = [];
     let searchIndex = null;
     let searchContent = null;
     const searchButton = document.getElementById("search-button");
     searchButton.addEventListener("click", search);
 
-
-    fetch("/search")
+    fetch("/contents")
         .then(res => res.json())
         .then(content => {
             searchContent = content;
@@ -36,14 +33,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (searchString && searchString.length > 2) {
             try {
                 searchResults = searchIndex.search(searchString);
-                console.log("results: ", searchResults);
             } catch (err) {
                 console.log(err);
                 if (err instanceof lunr.QueryParseError) {
                     return;
                 }
-            } finally {
-                console.log("search: ", searchString);
             }
         } else {
             searchResults = [];
@@ -53,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 let item = searchContent.find(function (e) {
                     return e.id == parseInt(match.ref);
                 });
-                console.log(item);
                 return (`<li  style="display:list-item"> <a href="${item.url}">${item.title}</a> </li>`);
 
 
@@ -65,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 // "<a href='" + item.url + "' title='field: url'>" + mark(item.url, searchString) + "</a>" +
                 // "</li>";
             }).join("");
-            console.log(searchResultElement.innerHTML);
         } else {
             searchResultElement.innerHTML = "<li><p>No results found</p></li>";
         }
