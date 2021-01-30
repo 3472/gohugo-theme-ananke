@@ -2,15 +2,15 @@
 <script>
     if (localStorage.getItem("cookieOptIn")) {
         var script = document.createElement("script");
-        script.setAttribute("src", "https://www.googletagmanager.com/gtag/js?id=UA-156119746-1");
+        script.setAttribute("src", "https://www.googletagmanager.com/gtag/js?id=");
         script.setAttribute("async", "false");
         var head = document.head;
         head.insertBefore(script, head.firstChild);
 
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+        //function gtag() { dataLayer.push(arguments); }
+        //gtag('js', new Date());
 
-        gtag('config', 'UA-156119746-1');
+        //       // gtag('config', '');
     }
 </script>
