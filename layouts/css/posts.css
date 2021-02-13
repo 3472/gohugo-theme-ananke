@@ -24,7 +24,7 @@ td, tr {
 }
 
 img {
-    height: 600px;
+    height: auto;
     padding-top: 20px;
 }
 
@@ -35,4 +35,9 @@ h2 {
 
 h4 {
     padding: 0px 0px 20px 0px;
+}
+
+.nested-img img {
+    height: auto;
+    width: 80vh;
 }
